@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - SkillMorphix</title>
+  <meta name="description" content="Your personalized learning dashboard">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .dashboard {
+      padding: 2rem 0;
+    }
+    
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .welcome-message h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    .course-progress {
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .progress-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    
+    .progress-card:last-child {
+      border-bottom: none;
+    }
+    
+    .course-info h3 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--light-gray);
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+    
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(to right, var(--teal), var(--blue));
+    }
+    
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .recommendations, .upcoming {
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .rec-card {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    
+    .rec-card:last-child {
+      border-bottom: none;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 0.25rem;
+      background-color: var(--light-blue);
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+    
+    .event {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    
+    .event:last-child {
+      border-bottom: none;
+    }
+    
+    .event-date {
+      min-width: 50px;
+      text-align: center;
+      padding: 0.5rem;
+      background-color: var(--light-gray);
+      border-radius: 0.25rem;
+    }
+    
+    .event-date .day {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    
+    .event-date .month {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    
+    @media (max-width: 768px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Offline Indicator -->
+  <div id="offline-indicator" class="hidden">
+    <i class="fas fa-wifi-slash"></i>
+    <span>You're offline. Using cached content.</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">SkillMorphix</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="modules.html">Modules</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Main Content -->
+  <main class="dashboard">
+    <div class="container">
+      <div class="dashboard-header">
+        <div class="welcome-message">
+          <h1>Welcome back, Student!</h1>
+          <p>Continue your learning journey</p>
+        </div>
+        <div class="last-login">
+          <p>Last login: <span id="last-login">Today, 10:35 AM</span></p>
+        </div>
+      </div>
+      
+      <div class="dashboard-grid">
+        <div class="course-progress">
+          <h2>Your Progress</h2>
+          <div class="progress-cards">
+            <div class="progress-card">
+              <div class="course-info">
+                <h3>Mathematics: Algebra Basics</h3>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: 75%;"></div>
+                </div>
+                <p>75% complete</p>
+              </div>
+              <a href="#" class="btn btn-primary">Continue</a>
+            </div>
+            
+            <div class="progress-card">
+              <div class="course-info">
+                <h3>Science: Introduction to Physics</h3>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: 45%;"></div>
+                </div>
+                <p>45% complete</p>
+              </div>
+              <a href="#" class="btn btn-primary">Continue</a>
+            </div>
+            
+            <div class="progress-card">
+              <div class="course-info">
+                <h3>English: Reading Comprehension</h3>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-fill" style="width: 90%;"></div>
+                </div>
+                <p>90% complete</p>
+              </div>
+              <a href="#" class="btn btn-primary">Continue</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="sidebar">
+          <div class="recommendations">
+            <h2>Recommended for You</h2>
+            <div class="rec-cards">
+              <div class="rec-card">
+                <span class="badge">Mathematics</span>
+                <h3>Advanced Equations</h3>
+                <p>Based on your progress in Algebra Basics</p>
+              </div>
+              
+              <div class="rec-card">
+                <span class="badge">Science</span>
+                <h3>Laws of Motion</h3>
+                <p>Next step in your Physics journey</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="upcoming">
+            <h2>Upcoming Deadlines</h2>
+            <div class="events">
+              <div class="event">
+                <div class="event-date">
+                  <div class="day">15</div>
+                  <div class="month">Apr</div>
+                </div>
+                <div class="event-info">
+                  <h3>Math Quiz</h3>
+                  <p>Algebra Unit 3 Assessment</p>
+                </div>
+              </div>
+              
+              <div class="event">
+                <div class="event-date">
+                  <div class="day">18</div>
+                  <div class="month">Apr</div>
+                </div>
+                <div class="event-info">
+                  <h3>Science Project</h3>
+                  <p>Physics Simulation Due</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>SkillMorphix</h3>
+          <p>Making quality education accessible to all through AI-powered personalized learning.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="modules.html">Modules</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: info@skillmorphix.org</p>
+          <p>Phone: +91 99999 88888</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 SkillMorphix. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Dashboard specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set last login time
+      const lastLogin = document.getElementById('last-login');
+      const date = new Date();
+      lastLogin.textContent = `Today, ${date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()} ${date.getHours() >= 12 ? 'PM' : 'AM'}`;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Modules - SkillMorphix</title>
+  <meta name="description" content="Browse and access learning modules">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .modules {
+      padding: 2rem 0;
+    }
+    
+    .module-filters {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      background-color: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .filter-btn.active {
+      background-color: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+    
+    .search-bar {
+      flex-grow: 1;
+      min-width: 200px;
+    }
+    
+    .search-bar input {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--light-gray);
+      border-radius: 0.25rem;
+    }
+    
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .module-card {
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .module-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .module-img {
+      height: 160px;
+      overflow: hidden;
+    }
+    
+    .module-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .module-content {
+      padding: 1.5rem;
+    }
+    
+    .module-tag {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .tag-math {
+      background-color: #DBEAFE;
+      color: var(--blue);
+    }
+    
+    .tag-science {
+      background-color: #CCFBF1;
+      color: var(--teal);
+    }
+    
+    .tag-english {
+      background-color: #FFEDD5;
+      color: var(--orange);
+    }
+    
+    .module-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .module-desc {
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    
+    .module-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+    
+    .offline-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      background-color: #E5E7EB;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+    }
+    
+    .offline-badge.available {
+      background-color: #DCFCE7;
+      color: #166534;
+    }
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    
+    .page-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.25rem;
+      background-color: var(--white);
+      border: 1px solid var(--light-gray);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .page-btn.active {
+      background-color: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+    
+    .page-btn:hover:not(.active) {
+      background-color: var(--light-gray);
+    }
+    
+    @media (max-width: 640px) {
+      .module-filters {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .search-bar {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Offline Indicator -->
+  <div id="offline-indicator" class="hidden">
+    <i class="fas fa-wifi-slash"></i>
+    <span>You're offline. Using cached content.</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">SkillMorphix</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="modules.html" class="active">Modules</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Modules Main Content -->
+  <main class="modules">
+    <div class="container">
+      <h1>Learning Modules</h1>
+      <p class="section-description">Browse through our library of interactive learning content</p>
+      
+      <div class="module-filters">
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="math">Mathematics</button>
+          <button class="filter-btn" data-filter="science">Science</button>
+          <button class="filter-btn" data-filter="english">English</button>
+        </div>
+        
+        <div class="filter-group">
+          <button class="filter-btn" data-filter="offline">
+            <i class="fas fa-download"></i> Offline Available
+          </button>
+        </div>
+        
+        <div class="search-bar">
+          <input type="text" placeholder="Search modules...">
+        </div>
+      </div>
+      
+      <div class="module-grid">
+        <!-- Mathematics Modules -->
+        <div class="module-card" data-category="math">
+          <div class="module-img">
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mathematics module">
+          </div>
+          <div class="module-content">
+            <span class="module-tag tag-math">Mathematics</span>
+            <h3 class="module-title">Algebra Fundamentals</h3>
+            <p class="module-desc">Learn the basics of algebraic expressions, equations, and functions.</p>
+            <div class="module-meta">
+              <span>12 lessons</span>
+              <div class="offline-badge available">
+                <i class="fas fa-check-circle"></i> Offline
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="module-card" data-category="math">
+          <div class="module-img">
+            <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mathematics module">
+          </div>
+          <div class="module-content">
+            <span class="module-tag tag-math">Mathematics</span>
+            <h3 class="module-title">Geometry Essentials</h3>
+            <p class="module-desc">Explore shapes, angles, and spatial relationships in this interactive course.</p>
+            <div class="module-meta">
+              <span>15 lessons</span>
+              <div class="offline-badge">
+                <i class="fas fa-cloud-download-alt"></i> Download
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Science Modules -->
+        <div class="module-card" data-category="science">
+          <div class="module-img">
+            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Science module">
+          </div>
+          <div class="module-content">
+            <span class="module-tag tag-science">Science</span>
+            <h3 class="module-title">Introduction to Physics</h3>
+            <p class="module-desc">Discover the fundamental laws that govern the physical world around us.</p>
+            <div class="module-meta">
+              <span>18 lessons</span>
+              <div class="offline-badge available">
+                <i class="fas fa-check-circle"></i> Offline
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="module-card" data-category="science">
+          <div class="module-img">
+            <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Science module">
+          </div>
+          <div class="module-content">
+            <span class="module-tag tag-science">Science</span>
+            <h3 class="module-title">Biology Basics</h3>
+            <p class="module-desc">Explore the fascinating world of living organisms and their ecosystems.</p>
+            <div class="module-meta">
+              <span>14 lessons</span>
+              <div class="offline-badge">
+                <i class="fas fa-cloud-download-alt"></i> Download
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- English Modules -->
+        <div class="module-card" data-category="english">
+          <div class="module-img">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" alt="English module">
+          </div>
+          <div class="module-content">
+            <span class="module-tag tag-english">English</span>
+            <h3 class="module-title">Reading Comprehension</h3>
+            <p class="module-desc">Develop skills to understand, analyze, and interpret various types of texts.</p>
+            <div class="module-meta">
+              <span>10 lessons</span>
+              <div class="offline-badge available">
+                <i class="fas fa-check-circle"></i> Offline
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="module-card" data-category="english">
+          <div class="module-img">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" alt="English module">
+          </div>
+          <div class="module-content">
+            <span class="module-tag tag-english">English</span>
+            <h3 class="module-title">Essay Writing</h3>
+            <p class="module-desc">Learn how to craft compelling essays with clear structure and persuasive arguments.</p>
+            <div class="module-meta">
+              <span>8 lessons</span>
+              <div class="offline-badge">
+                <i class="fas fa-cloud-download-alt"></i> Download
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pagination">
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>SkillMorphix</h3>
+          <p>Making quality education accessible to all through AI-powered personalized learning.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="modules.html">Modules</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: info@skillmorphix.org</p>
+          <p>Phone: +91 99999 88888</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 skillmorphix. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Modules page specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      // Module filtering
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const moduleCards = document.querySelectorAll('.module-card');
+      
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active button
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          const filter = btn.getAttribute('data-filter');
+          
+          // Filter modules
+          moduleCards.forEach(card => {
+            if (filter === 'all') {
+              card.style.display = 'block';
+            } else if (filter === 'offline') {
+              const badge = card.querySelector('.offline-badge');
+              if (badge.classList.contains('available')) {
+                card.style.display = 'block';
+              } else {
+                card.style.display = 'none';
+              }
+            } else {
+              if (card.getAttribute('data-category') === filter) {
+                card.style.display = 'block';
+              } else {
+                card.style.display = 'none';
+              }
+            }
+          });
+        });
+      });
+      
+      // Search functionality
+      const searchInput = document.querySelector('.search-bar input');
+      
+      searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        
+        moduleCards.forEach(card => {
+          const title = card.querySelector('.module-title').textContent.toLowerCase();
+          const desc = card.querySelector('.module-desc').textContent.toLowerCase();
+          
+          if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+      
+      // Pagination
+      const pageBtns = document.querySelectorAll('.page-btn');
+      
+      pageBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          pageBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // In a real application, this would load new content
+          // For this demo, we'll just scroll to the top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

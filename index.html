@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillMorphix - Personalized Learning</title>
+  <meta name="description" content="AI-Powered Learning Platform for Underprivileged Students">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Offline Indicator -->
+  <div id="offline-indicator" class="hidden">
+    <i class="fas fa-wifi-slash"></i>
+    <span>You're offline. Using cached content.</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">
+        <img src="mortarboard.svg" height="26" width="26" alt="icon">
+        <a href="index.html">SkillMorphix</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="modules.html">Modules</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Personalized Learning for All</h1>
+        <p>Bridging the digital divide with AI-powered education that adapts to your learning style, works offline, and helps every student succeed.</p>
+        <div class="cta-buttons">
+          <a href="dashboard.html" class="btn btn-primary">Start Learning</a>
+          <a href="about.html" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Students learning with technology">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Built for inclusive education</h2>
+        <p>Our platform adapts to each student's needs, making quality education accessible to all.</p>
+      </div>
+      
+      <div class="feature-cards">
+        <div class="feature-card" data-color="blue">
+          <div class="feature-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI-Powered Personalization</h3>
+          <p>Our AI engine analyzes learning patterns to create customized lesson plans tailored to each student's unique needs.</p>
+        </div>
+        
+        <div class="feature-card" data-color="orange">
+          <div class="feature-icon">
+            <i class="fas fa-cloud-download-alt"></i>
+          </div>
+          <h3>Works Offline</h3>
+          <p>Download content for offline access, ensuring learning continues even without stable internet connections.</p>
+        </div>
+        
+        <div class="feature-card" data-color="teal">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Adaptive Assessments</h3>
+          <p>Assessments that adjust in real-time based on student responses, providing the right level of challenge.</p>
+        </div>
+        
+        <div class="feature-card" data-color="blue">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Real-time Feedback</h3>
+          <p>Get immediate, constructive feedback on assignments to improve understanding and retention.</p>
+        </div>
+        
+        <div class="feature-card" data-color="teal">
+          <div class="feature-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3>Rich Content Library</h3>
+          <p>Access thousands of lessons, videos, practice exercises and interactive simulations across subjects.</p>
+        </div>
+        
+        <div class="feature-card cta-card">
+          <h3>Ready to start learning?</h3>
+          <p>Join thousands of students already benefiting from personalized education.</p>
+          <a href="dashboard.html" class="btn btn-light">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stat-cards">
+        <div class="stat-card">
+          <p class="stat-number">85%</p>
+          <p class="stat-label">Improvement in student engagement</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-number">10,000+</p>
+          <p class="stat-label">Students across 15 countries</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-number">500+</p>
+          <p class="stat-label">Learning modules available</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>Transforming education worldwide</h2>
+      </div>
+      
+      <div class="testimonial-cards">
+        <div class="testimonial-card">
+          <p class="quote">"This platform has completely changed how I learn. The personalized approach means I can actually understand math now, and the offline feature helps when my internet is unstable."</p>
+          <div class="author">
+            <p class="name">Aisha K.</p>
+            <p class="role">Student, Kenya</p>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="quote">"As a teacher in a rural school, BridgeAI has been invaluable. My students can access quality educational content tailored to their needs, even with our limited connectivity."</p>
+          <div class="author">
+            <p class="name">Miguel R.</p>
+            <p class="role">Teacher, Colombia</p>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="quote">"The AI recommendations are spot-on. The system identified areas where my daughter was struggling and provided targeted exercises that made a real difference in her understanding."</p>
+          <div class="author">
+            <p class="name">Sarah M.</p>
+            <p class="role">Parent, India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to experience personalized learning?</h2>
+      <p>Join us in bridging the digital divide and making quality education accessible to all.</p>
+      <div class="cta-buttons">
+        <a href="dashboard.html" class="btn btn-light">Get Started</a>
+        <a href="about.html" class="btn btn-outline-light">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>SkillMorphix</h3>
+          <p>Making quality education accessible to all through AI-powered personalized learning.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="modules.html">Modules</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: info@skillmorphix.org</p>
+          <p>Phone: +91 99999 88888</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 SkillMorphix. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
